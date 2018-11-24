@@ -1,0 +1,12 @@
+.react-grid-HeaderCell {
+    background-color: red !important;
+}
+
+.react-grid-Container {
+    background: blue;
+}
+
+* {
+    /* font-size: 40px; */
+    color: blue;
+}

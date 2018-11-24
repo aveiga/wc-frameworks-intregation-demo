@@ -1,0 +1,21 @@
+{
+  "name": "react-wc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "react-wc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "browserslist": [
+    "last 1 Chrome version"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.6.3",
+    "react-bootstrap": "^0.32.4",
+    "react-charts": "^2.0.0-alpha.8",
+    "react-data-grid": "^4.0.9",
+    "react-dom": "^16.6.3"
+  }
+}
