@@ -9,7 +9,13 @@ https://vuejsdevelopers.com/2018/05/21/vue-js-web-component/
 https://reactjs.org/docs/web-components.html
 
 ### How to build web components using Angular
-TODO
+https://www.telerik.com/blogs/getting-started-with-angular-elements
+https://angular.io/guide/elements
+
+Don't forget:
+* tsconfig.json -> target -> "es6"
+* package.json -> "document-register-element" -> "^1.8.1"
+* src/app/app.component.ts -> // encapsulation: ViewEncapsulation.Native (No need for view encapsulation)
 
 ### How to build web components using LitElement
 TODO

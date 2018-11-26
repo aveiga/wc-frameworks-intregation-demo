@@ -13,6 +13,17 @@ class CustomGrid extends Component {
             { key: 'count', name: 'Count' }];
 
         this.rows = [{ id: 0, title: 'row1', count: 20 }, { id: 1, title: 'row1', count: 40 }, { id: 2, title: 'row1', count: 60 }];
+
+        setInterval(() => {
+            ReactDOM.findDOMNode(this).dispatchEvent(new CustomEvent('reactevent', {
+                detail: {
+                    name: 'react',
+                    data: this.rows
+                },
+                bubbles: true,
+                composed: true
+            }));
+        }, 1000);
     }
 
     render() {
