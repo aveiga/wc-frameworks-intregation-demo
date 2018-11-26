@@ -1,11 +1,27 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import { Chart } from "react-charts";
+import { setInterval } from "timers";
 
 
 class CustomGrid extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            headerStyle: {
+                "color": "red",
+                "font-size": "30px"
+            }
+        }
+
+        setTimeout(() => {
+            this.setState({
+                headerStyle: {
+                    "color": "blue"
+                }
+            });
+        }, 2000);
 
         this.columns = [
             { key: 'id', name: 'ID' },
@@ -28,12 +44,13 @@ class CustomGrid extends Component {
 
     render() {
         return (
-            <div
+            <div className="myChart"
                 style={{
                     width: "400px",
                     height: "300px"
                 }}
             >
+                <h2 style={this.state.headerStyle}>This is a React Chart</h2>
                 <Chart
                     data={[
                         {
