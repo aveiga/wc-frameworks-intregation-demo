@@ -9,57 +9,44 @@ class CustomGrid extends Component {
         super(props);
 
         this.state = {
-            headerStyle: {
-                "color": "red",
-                "font-size": "30px"
-            }
+            values: [[0, 0]]
         }
 
-        setTimeout(() => {
+        // Note: this is how to dispatch a Custom Event
+        // setInterval(() => {
+        //     ReactDOM.findDOMNode(this).dispatchEvent(new CustomEvent('reactevent', {
+        //         detail: {
+        //             name: 'react',
+        //             data: this.rows
+        //         },
+        //         bubbles: true,
+        //         composed: true
+        //     }));
+        // }, 1000);
+    }
+
+    addValues(values) {
+        if (values) {
             this.setState({
-                headerStyle: {
-                    "color": "blue"
-                }
+                values: this.state.values.concat([[values.x, values.y]])
             });
-        }, 2000);
-
-        this.columns = [
-            { key: 'id', name: 'ID' },
-            { key: 'title', name: 'Title' },
-            { key: 'count', name: 'Count' }];
-
-        this.rows = [{ id: 0, title: 'row1', count: 20 }, { id: 1, title: 'row1', count: 40 }, { id: 2, title: 'row1', count: 60 }];
-
-        setInterval(() => {
-            ReactDOM.findDOMNode(this).dispatchEvent(new CustomEvent('reactevent', {
-                detail: {
-                    name: 'react',
-                    data: this.rows
-                },
-                bubbles: true,
-                composed: true
-            }));
-        }, 1000);
+        }
     }
 
     render() {
         return (
             <div className="myChart"
                 style={{
-                    width: "400px",
+                    width: "100%",
                     height: "300px"
                 }}
             >
-                <h2 style={this.state.headerStyle}>This is a React Chart</h2>
+                <h2>This is a React Chart</h2>
                 <Chart
                     data={[
                         {
                             label: "Series 1",
-                            data: [[0, 1], [1, 2], [2, 4], [3, 2], [4, 7]]
-                        },
-                        {
-                            label: "Series 2",
-                            data: [[0, 3], [1, 1], [2, 5], [3, 6], [4, 4]]
+                            data: this.state.values
                         }
                     ]}
                     axes={[
@@ -78,7 +65,11 @@ class CustomReactGrid extends HTMLElement {
         const mountPoint = document.createElement('div');
         shadowRoot.appendChild(mountPoint);
 
-        ReactDOM.render(<CustomGrid></CustomGrid>, mountPoint);
+        this.reactElement = ReactDOM.render(<CustomGrid></CustomGrid>, mountPoint);
+    }
+
+    addValues(v) {
+        this.reactElement.addValues(v);
     }
 }
 customElements.define('custom-react-grid', CustomReactGrid);

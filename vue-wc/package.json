@@ -6,10 +6,11 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "wc": "vue-cli-service build --target wc --name custom-vue-grid ./src/main.js"
+    "wc": "vue-cli-service build --target wc --name vue-add-values ./src/main.js"
   },
   "dependencies": {
-    "vue": "^2.5.17"
+    "vue": "^2.5.17",
+    "vue-material": "^1.0.0-beta-10.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.1.1",

@@ -1,8 +1,9 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, ViewChild, OnInit } from '@angular/core';
+import { MatTableDataSource, MatPaginator } from "@angular/material";
 
-interface NameObj {
-  name: String,
-  number: Number
+interface GraphEntry {
+  x: Number;
+  y: Number;
 }
 
 @Component({
@@ -12,22 +13,43 @@ interface NameObj {
   // encapsulation: ViewEncapsulation.Native
 })
 
-export class AppComponent {
-  @Input() name = 'friend';
-  focus: string;
-  focusSet = false;
+export class AppComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  displayedColumns = ['x', 'y'];
+  @Input() dataSource: MatTableDataSource<GraphEntry> = new MatTableDataSource<GraphEntry>();
 
-  @Output('nameobj') nameObj: EventEmitter<NameObj> = new EventEmitter();
+  // Note: this is how a custom method is specified
+  @Input()
+  public addValues = (v: GraphEntry) => {
+    console.log(this.dataSource);
+    console.log(this);
+    this.dataSource.data = this.dataSource.data.concat([v]);
+    this.changeDetectorRefs.detectChanges();
+  };
+
+  constructor(private changeDetectorRefs: ChangeDetectorRef) { }
+
+  ngOnInit(){
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.data = [{
+      x: 0,
+      y: 0
+    }];
+  }
+  
+
+  // NOTE: This is how a Custom Event is setup
+  // @Output('nameobj') nameObj: EventEmitter<NameObj> = new EventEmitter();
 
   setFocus(value) {
-    this.focus = value;
-    this.focusSet = true;
     
-    let obj:NameObj = {
-      name: value,
-      number: 1
-    };
+    
+    // NOTE: This is how a custom event is dispatched
+    // let obj:NameObj = {
+    //   name: value,
+    //   number: 1
+    // };
 
-    this.nameObj.emit(obj);
+    // this.nameObj.emit(obj);
   }
 }

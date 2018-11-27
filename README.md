@@ -19,3 +19,6 @@ Don't forget:
 
 ### How to build web components using LitElement
 TODO
+
+## Known Issues
+* styled-components (a React library) doesn't seem to work in this setup

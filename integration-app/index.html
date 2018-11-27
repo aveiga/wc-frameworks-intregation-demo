@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,26 +9,44 @@
     <!-- <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script> -->
     <script src="./deps/vue.js"></script>
     <script src="../react-wc/dist/react-wc.js"></script>
-    <script src="../vue-wc/dist/custom-vue-grid.min.js"></script>
+    <script src="../vue-wc/dist/vue-add-values.min.js"></script>
     <script src="../angular-wc/elements/angular-wc.js"></script>
+
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
+
 <body>
-    <custom-react-grid></custom-react-grid>
-    <custom-react-grid></custom-react-grid>
-    <custom-vue-grid msg="Outside msg..."></custom-vue-grid>
-    <custom-vue-grid msg="Outside msg two..."></custom-vue-grid>
-    <custom-angular-grid></custom-angular-grid>
-    <custom-angular-grid name="André"></custom-angular-grid>
+    <div style="height: 100%; min-width: 800px; display: grid; grid-template-rows: 30% 70%; grid-template-columns: 50% 50%">
+        <vue-add-values style="grid-column-start: span 2"></vue-add-values>
+        <custom-react-grid></custom-react-grid>
+        <custom-angular-grid></custom-angular-grid>
+    </div>
 
     <script>
-        //Listening for Angular Events
-        document.querySelector('custom-angular-grid').addEventListener('nameobj', (e) => console.log(e));
+        const vueWC = document.querySelector('vue-add-values');
+        const reactWC = document.querySelector('custom-react-grid');
+        const angularWC = document.querySelector('custom-angular-grid');
 
         //Listening for VueJS Events
-        document.querySelector('custom-vue-grid').addEventListener('vueevent', (e)=>console.log(e));
+        vueWC.addEventListener('vueaddvalues', (e) => {
+            reactWC.addValues(e.detail[0]);
+            angularWC.addValues(e.detail[0]);
+        });
 
-        //Listening for React Events
-        document.querySelector('custom-react-grid').addEventListener('reactevent', e=>console.log(e));
+        // //Listening for Angular Events
+        // document.querySelector('custom-angular-grid').addEventListener('nameobj', (e) => console.log(e));
+
+        // //Listening for React Events
+        // document.querySelector('custom-react-grid').addEventListener('reactevent', e => console.log(e));
     </script>
 </body>
+
 </html>
