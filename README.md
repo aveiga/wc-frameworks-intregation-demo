@@ -17,8 +17,5 @@ Don't forget:
 * package.json -> "document-register-element" -> "^1.8.1"
 * src/app/app.component.ts -> // encapsulation: ViewEncapsulation.Native (No need for view encapsulation)
 
-### How to build web components using LitElement
-TODO
-
 ## Known Issues
 * styled-components (a React library) doesn't seem to work in this setup
