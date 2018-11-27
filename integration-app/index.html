@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>UI FW Interoperability</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
     <!-- <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script> -->
     <script src="./deps/vue.js"></script>
     <script src="../react-wc/dist/react-wc.js"></script>
@@ -19,15 +20,31 @@
             height: 100%;
             margin: 0;
             padding: 0;
+            font-family: 'Noto Sans TC', sans-serif;
+            background: #345F84;
+        }
+
+        .vueForm {
+            background: #FCBF56;
+            grid-column-start: span 2;
+        }
+
+        .card {
+            color: white;
+            padding: 50px;
+        }
+
+        .wrapper {
+            height: 100%; min-width: 800px; display: grid; grid-template-rows: 30% 70%; grid-template-columns: 50% 50%;
         }
     </style>
 </head>
 
 <body>
-    <div style="height: 100%; min-width: 800px; display: grid; grid-template-rows: 30% 70%; grid-template-columns: 50% 50%">
-        <vue-add-values style="grid-column-start: span 2"></vue-add-values>
-        <custom-react-grid></custom-react-grid>
-        <custom-angular-grid></custom-angular-grid>
+    <div class="wrapper">
+        <vue-add-values class="vueForm"></vue-add-values>
+        <custom-react-grid class="card"></custom-react-grid>
+        <custom-angular-grid class="card"></custom-angular-grid>
     </div>
 
     <script>
